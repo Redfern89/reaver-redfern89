@@ -742,6 +742,9 @@ static void wash_usage(char *prog)
 	fprintf(stderr, "\t-j, --json                           print extended WPS info as json\n");
 	fprintf(stderr, "\t-U, --utf8                           Show UTF8 ESSID (does not sanitize ESSID, dangerous)\n");
 	fprintf(stderr, "\t-p, --progress                       Show percentage of crack progress\n");
+	fprintf(stderr, "\t-Z, --no-lck                         Do not show locked WPS\n");
+	fprintf(stderr, "\t-R, --rssi-min                       Minumum RSSI to show\n");
+	fprintf(stderr, "\t-C, --colors                         Use color scheme\n");
 	fprintf(stderr, "\t-h, --help                           Show help\n");
 	
 	fprintf(stderr, "\nExample:\n");
