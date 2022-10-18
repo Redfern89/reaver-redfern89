@@ -31,7 +31,8 @@ The first version of **reaver-wps** (reaver 1.0) was created by **Craig Heffner*
 * The original Reaver (version 1.0 to 1.4) can be found in [google code archives](https://code.google.com/p/reaver-wps/).
 * The discontinued reaver-wps-fork-t6x community edition, reaver version 1.5.3, which includes the Pixie Dust attack, is now the  [old-master branch](https://github.com/t6x/reaver-wps-fork-t6x/tree/master-old) from this repository.  
 * The latest revison of reaver-wps-fork-t6x community edition is the [master branch](https://github.com/t6x/reaver-wps-fork-t6x)  from this repository.  
-Reaver versioning was updated to **1.6.x** in order to identify the new cycle.  
+Reaver versioning was updated to **1.6.x** in order to identify the new cycle.
+* The latest revison of reaver-redfern89 is the [master branch](https://github.com/Redfern89/reaver-redfern89) from this repository.
 All stable relases since the first beta version of reaver 1.6 can be downloaded from our [Releases](https://github.com/t6x/reaver-wps-fork-t6x/releases) page.  
 * More information about the Pixie Dust attack (including **which APs are vulnerable**) can be found in [pixiewps repository](https://github.com/wiire/pixiewps), 
 [pixie dust thread (in Kali forum)](https://forums.kali.org/showthread.php?24286-WPS-Pixie-Dust-Attack-(Offline-WPS-Attack)) & [Dominique Bongard's full disclosure](https://docs.google.com/spreadsheets/d/1tSlbqVQ59kGn8hgmwcPTHUECQ3o9YhXR91A_p7Nnj5Y/edit?usp=sharing)
