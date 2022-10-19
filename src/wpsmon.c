@@ -468,6 +468,7 @@ void parse_wps_settings(const u_char *packet, struct pcap_pkthdr *header, char *
 	char *rssi_color = NULL;
 	int lck_wps = 0;
 	int dbm = 0;
+	int progress_dbm = 0;
 	
 	if(packet == NULL || header == NULL) goto end;
 
@@ -516,13 +517,16 @@ void parse_wps_settings(const u_char *packet, struct pcap_pkthdr *header, char *
 			ssid = (char *) get_ssid();
 			
 			dbm = -rssi;
+			progress_dbm = dbm;
 			
-			int wps_signal_progess_idx = floor(((dbm - dbm_max) * dbm_array_max_idx) / (dbm_min - dbm_max));
+			if (progress_dbm <= 40) progress_dbm = 40;
+			
+			int wps_signal_progess_idx = floor(((progress_dbm - dbm_max) * dbm_array_max_idx) / (dbm_min - dbm_max));
 			
 			if (use_colors) {
-				if (dbm >= 30 && dbm <= 69) rssi_color = COLOR_GREEN;
-				if (dbm >= 70 && dbm <= 85) rssi_color = COLOR_BYELLOW;
-				if (dbm >= 86 && dbm <= 99) rssi_color = COLOR_BRED;
+				if (progress_dbm >= 30 && progress_dbm <= 69) rssi_color = COLOR_GREEN;
+				if (progress_dbm >= 70 && progress_dbm <= 85) rssi_color = COLOR_BYELLOW;
+				if (progress_dbm >= 86 && progress_dbm <= 99) rssi_color = COLOR_BRED;
 			} else {
 				rssi_color = RESET_COLOR;
 			}
