@@ -421,21 +421,21 @@ void monitor(char *bssid, int passive, int source, int channel, int mode)
 			use_colors ? fprintf(stdout, "%s", HEAD_COLOR) : fprintf(stdout, "%s", RESET_COLOR);
 			if (!show_no_lck) {
 				if (show_crack_progress) {
-					fprintf  (stdout, "BSSID               Ch  dBm  WPS  Lck  Vendor    Progr  ESSID\n");
+					fprintf  (stdout, "BSSID               Ch    Signal strength    dBm  WPS  Lck  Vendor    Progr  ESSID\n");
 				} else {
-					fprintf  (stdout, "BSSID               Ch    Signal strength   dBm  WPS  Lck  Vendor    ESSID\n");
+					fprintf  (stdout, "BSSID               Ch    Signal strength    dBm  WPS  Lck  Vendor    ESSID\n");
 				}
 			} else {
 				if (show_crack_progress) {
-					fprintf  (stdout, "BSSID               Ch  dBm  WPS  Vendor    Progr  ESSID\n");
+					fprintf  (stdout, "BSSID               Ch    Signal strength    dBm  WPS  Vendor    Progr  ESSID\n");
 				} else {
-					fprintf  (stdout, "BSSID               Ch    Signal strength   dBm  WPS  Vendor    ESSID\n");
+					fprintf  (stdout, "BSSID               Ch    Signal strength    dBm  WPS  Vendor    ESSID\n");
 				}
 				
 			}
 			//fprintf(stdout, "00:11:22:33:44:55  104  -77  1.0  Yes  Bloatcom  0123456789abcdef0123456789abcdef\n");
 			use_colors ? fprintf(stdout, "%s", LINE_COLOR) : fprintf(stdout, "%s", RESET_COLOR);
-			fprintf  (stdout, "--------------------------------------------------------------------------------\n");
+			fprintf  (stdout, "-----------------------------------------------------------------------------------------------\n");
 			fprintf  (stdout, RESET_COLOR);
 		}
 		header_printed = 1;
@@ -593,12 +593,25 @@ void parse_wps_settings(const u_char *packet, struct pcap_pkthdr *header, char *
 						}
 						if (!show_no_lck) {
 							if (show_crack_progress)
-								fprintf(stdout, "%17s  %3d  %.2d  %s  %3s  %8s  %5s  %s\n", bssid, channel, rssi, wps_version, lock_display, vendor ? vendor : "        ", crack_progress ? crack_progress : "-", sane_ssid);
+								if (use_colors) {
+									fprintf(stdout, "%s%17s%s ", BSSID_COLOR, bssid, RESET_COLOR);
+									fprintf(stdout, "%s%3d%s  ", CHANNEL_COLOR, channel, RESET_COLOR);
+									fprintf(stdout, "%s%21s%s ", rssi_color, signal_dbm, RESET_COLOR);
+									fprintf(stdout, "%s%.2d%s  ", RSSI_COLOR, rssi, RESET_COLOR);
+									fprintf(stdout, "%s%3s%s  ", WPS_VER_COLOR, wps_version, RESET_COLOR);
+									fprintf(stdout, "%s%s%s ", WPS_LCK_COLOR, lock_display, RESET_COLOR);
+									fprintf(stdout, "%s%8s%s  ", VENDOR_COLOR, vendor ? vendor : "        ", RESET_COLOR);
+									fprintf(stdout, "%s%5s%s  ", CPROGRESS_COLOR, crack_progress ? crack_progress : "-", RESET_COLOR);
+									fprintf(stdout, "%s%s%s", ESSID_COLOR, sane_ssid, RESET_COLOR);								
+									fprintf(stdout, "\n");									
+								} else {
+									fprintf(stdout, "%17s  %3d %20s %.2d  %s  %3s  %8s  %5s  %s\n", bssid, channel, signal_dbm, rssi, wps_version, lock_display, vendor ? vendor : "        ", crack_progress ? crack_progress : "-", sane_ssid);
+								}
 							else {
 								if (use_colors) {
 									fprintf(stdout, "%s%17s%s ", BSSID_COLOR, bssid, RESET_COLOR);
 									fprintf(stdout, "%s%3d%s  ", CHANNEL_COLOR, channel, RESET_COLOR);
-									fprintf(stdout, "%s%20s%s ", rssi_color, signal_dbm, RESET_COLOR);
+									fprintf(stdout, "%s%21s%s ", rssi_color, signal_dbm, RESET_COLOR);
 									fprintf(stdout, "%s%.2d%s  ", RSSI_COLOR, rssi, RESET_COLOR);
 									fprintf(stdout, "%s%3s%s  ", WPS_VER_COLOR, wps_version, RESET_COLOR);
 									fprintf(stdout, "%s%s%s ", WPS_LCK_COLOR, lock_display, RESET_COLOR);
@@ -612,13 +625,27 @@ void parse_wps_settings(const u_char *packet, struct pcap_pkthdr *header, char *
 						} else {
 							// no lck
 							if (!lck_wps) {
-								if (show_crack_progress)
-									fprintf(stdout, "%17s  %3d  %.2d  %s  %8s  %5s  %s\n", bssid, channel, rssi, wps_version, vendor ? vendor : "        ", crack_progress ? crack_progress : "-", sane_ssid);
-								else {
+								if (show_crack_progress) {
+									//fprintf(stdout, "%17s  %3d  %.2d  %s  %8s  %5s  %s\n", bssid, channel, rssi, wps_version, vendor ? vendor : "        ", crack_progress ? crack_progress : "-", sane_ssid);
 									if (use_colors) {
 										fprintf(stdout, "%s%17s%s ", BSSID_COLOR, bssid, RESET_COLOR);
 										fprintf(stdout, "%s%3d%s  ", CHANNEL_COLOR, channel, RESET_COLOR);
-										fprintf(stdout, "%s%20s%s ", rssi_color, signal_dbm, RESET_COLOR);
+										fprintf(stdout, "%s%21s%s ", rssi_color, signal_dbm, RESET_COLOR);
+										fprintf(stdout, "%s%.2d%s  ", RSSI_COLOR, rssi, RESET_COLOR);
+										fprintf(stdout, "%s%3s%s  ", WPS_VER_COLOR, wps_version, RESET_COLOR);
+										fprintf(stdout, "%s%8s%s  ", VENDOR_COLOR, vendor ? vendor : "        ", RESET_COLOR);
+										fprintf(stdout, "%s%5s%s  ", CPROGRESS_COLOR, crack_progress ? crack_progress : "-", RESET_COLOR);
+										fprintf(stdout, "%s%s%s", ESSID_COLOR, sane_ssid, RESET_COLOR);								
+										fprintf(stdout, "\n");										
+									} else {
+										fprintf(stdout, "%17s  %3d %20s %.2d  %s  %8s  %5s  %s\n", bssid, channel, signal_dbm, rssi, wps_version, vendor ? vendor : "        ", crack_progress ? crack_progress : "-", sane_ssid);
+									}
+									
+								} else {
+									if (use_colors) {
+										fprintf(stdout, "%s%17s%s ", BSSID_COLOR, bssid, RESET_COLOR);
+										fprintf(stdout, "%s%3d%s  ", CHANNEL_COLOR, channel, RESET_COLOR);
+										fprintf(stdout, "%s%21s%s ", rssi_color, signal_dbm, RESET_COLOR);
 										fprintf(stdout, "%s%.2d%s  ", RSSI_COLOR, rssi, RESET_COLOR);
 										fprintf(stdout, "%s%3s%s  ", WPS_VER_COLOR, wps_version, RESET_COLOR);
 										fprintf(stdout, "%s%8s%s  ", VENDOR_COLOR, vendor ? vendor : "        ", RESET_COLOR);
