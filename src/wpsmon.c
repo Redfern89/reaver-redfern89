@@ -423,13 +423,13 @@ void monitor(char *bssid, int passive, int source, int channel, int mode)
 				if (show_crack_progress) {
 					fprintf  (stdout, "BSSID               Ch    Signal strength    dBm    Frequency    WPS  Lck  Vendor    Progr  ESSID\n");
 				} else {
-					fprintf  (stdout, "BSSID               Ch    Signal strength    dBm    Frequency    WPS  Lck  Vendor   ESSID\n");
+					fprintf  (stdout, "BSSID               Ch    Signal strength    dBm    Frequency    WPS  Lck  Vendor    ESSID\n");
 				}
 			} else {
 				if (show_crack_progress) {
 					fprintf  (stdout, "BSSID               Ch    Signal strength    dBm    Frequency    WPS  Vendor    Progr  ESSID\n");
 				} else {
-					fprintf  (stdout, "BSSID               Ch    Signal strength    dBm    Frequency    WPS  Vendor   ESSID\n");
+					fprintf  (stdout, "BSSID               Ch    Signal strength    dBm    Frequency    WPS  Vendor    ESSID\n");
 				}
 				
 			}
@@ -643,7 +643,7 @@ void parse_wps_settings(const u_char *packet, struct pcap_pkthdr *header, char *
 										fprintf(stdout, "%s%s%s", ESSID_COLOR, sane_ssid, RESET_COLOR);								
 										fprintf(stdout, "\n");										
 									} else {
-										fprintf(stdout, "%17s  %3d %20s %.2d  %s  %8s  %5s  %s\n", bssid, channel, signal_dbm, rssi, wps_version, vendor ? vendor : "        ", crack_progress ? crack_progress : "-", sane_ssid);
+										fprintf(stdout, "%17s  %3d %20s %.2d    %.3f Ghz    %s  %8s  %5s  %s\n", bssid, channel, signal_dbm, rssi, freq, wps_version, vendor ? vendor : "        ", crack_progress ? crack_progress : "-", sane_ssid);
 									}
 									
 								} else {
@@ -658,7 +658,7 @@ void parse_wps_settings(const u_char *packet, struct pcap_pkthdr *header, char *
 										fprintf(stdout, "%s%s%s", ESSID_COLOR, sane_ssid, RESET_COLOR);								
 										fprintf(stdout, "\n");										
 									} else {
-										fprintf(stdout, "%17s  %3d %20s %.2d  %s  %8s  %s\n", bssid, channel, signal_dbm, rssi, wps_version, vendor ? vendor : "        ", sane_ssid);
+										fprintf(stdout, "%17s  %3d %20s %.2d    %.3f Ghz    %s  %8s  %s\n", bssid, channel, signal_dbm, rssi, freq, wps_version, vendor ? vendor : "        ", sane_ssid);
 									}
 								}
 							}
