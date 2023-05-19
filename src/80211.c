@@ -245,6 +245,14 @@ int8_t signal_strength(const unsigned char *packet, size_t len)
 	return 0;
 }
 
+/* Extracts the noise floor field (if any) from the packet's radio tap header */
+int8_t noise_floor(const unsigned char *packet, size_t len) {
+	unsigned char readbuf[1];
+	if (get_radiotap_flag(packet, len, IEEE80211_RADIOTAP_DBM_ANTNOISE, readbuf))
+		return (int8_t) readbuf[0];
+	return 0;
+}
+
 /* 
  * Determines if the target AP has locked its WPS state or not.
  * Returns 0 if not locked, 1 if locked, -1 if wps has been turned off
