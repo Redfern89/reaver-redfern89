@@ -605,10 +605,10 @@ void parse_wps_settings(const u_char *packet, struct pcap_pkthdr *header, char *
 									fprintf(stdout, "%s%s%s ", WPS_LCK_COLOR, lock_display, RESET_COLOR);
 									fprintf(stdout, "%s%8s%s  ", VENDOR_COLOR, vendor ? vendor : "        ", RESET_COLOR);
 									fprintf(stdout, "%s%5s%s  ", CPROGRESS_COLOR, crack_progress ? crack_progress : "-", RESET_COLOR);
-									fprintf(stdout, "%s%s%s", ESSID_COLOR, sane_ssid, RESET_COLOR);								
+									fprintf(stdout, " %s%s%s", ESSID_COLOR, sane_ssid, RESET_COLOR);								
 									fprintf(stdout, "\n");									
 								} else {
-									fprintf(stdout, "%17s  %3d %20s %.2d   %.3fG   %s  %3s  %8s  %5s  %s\n", bssid, channel, signal_dbm, rssi, freq, wps_version, lock_display, vendor ? vendor : "        ", crack_progress ? crack_progress : "-", sane_ssid);
+									fprintf(stdout, "%17s  %3d %20s %.2d    %.3f GHz    %s  %3s  %8s  %5s  %s\n", bssid, channel, signal_dbm, rssi, freq, wps_version, lock_display, vendor ? vendor : "        ", crack_progress ? crack_progress : "-", sane_ssid);
 								}
 							else {
 								if (use_colors) {
@@ -620,7 +620,7 @@ void parse_wps_settings(const u_char *packet, struct pcap_pkthdr *header, char *
 									fprintf(stdout, "%s%3s%s  ", WPS_VER_COLOR, wps_version, RESET_COLOR);
 									fprintf(stdout, "%s%s%s ", WPS_LCK_COLOR, lock_display, RESET_COLOR);
 									fprintf(stdout, "%s%8s%s  ", VENDOR_COLOR, vendor ? vendor : "        ", RESET_COLOR);
-									fprintf(stdout, "%s%s%s", ESSID_COLOR, sane_ssid, RESET_COLOR);								
+									fprintf(stdout, " %s%s%s", ESSID_COLOR, sane_ssid, RESET_COLOR);								
 									fprintf(stdout, "\n");
 								} else {
 									fprintf(stdout, "%17s  %3d %20s %.2d    %.3f Ghz    %s  %3s  %8s  %s\n", bssid, channel, signal_dbm, rssi, freq, wps_version, lock_display, vendor ? vendor : "        ", sane_ssid);
