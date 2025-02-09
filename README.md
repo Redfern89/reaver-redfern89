@@ -6,7 +6,7 @@
 
 # General overview
 <p align="center">
-	<img src="https://i.ibb.co/vZxd0JV/68747470733a2f2f692e6962622e636f2f675776584c54382f7373737373732e706e67.png">
+	<img src="https://i.ibb.co/wZzCs6K3/Screenshot-1.png">
 </p>
 
 # Changes by me (wash)
