@@ -203,7 +203,7 @@ Some ideas made by:
 Bug fixes made by:
 `alxchk`, `USUARIONUEVO`, `ldm314`, `vk496`, `falsovsky`, `rofl0r`, `xhebox`
 
-## Special Thanks
+## Greets GO TO
 
 * `Soxrok2212` for all work done to help in the development of tools
 * `Wiire` for developing Pixiewps
